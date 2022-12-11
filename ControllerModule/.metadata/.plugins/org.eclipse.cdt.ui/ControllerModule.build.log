@@ -1,0 +1,62 @@
+20:04:32 **** Incremental Build of configuration Debug for project ControllerModule ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F769xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:1624:13: warning: 'MX_FMC_Init' defined but not used [-Wunused-function]
+ 1624 | static void MX_FMC_Init(void)
+      |             ^~~~~~~~~~~
+../Core/Src/main.c:1598:13: warning: 'MX_WWDG_Init' defined but not used [-Wunused-function]
+ 1598 | static void MX_WWDG_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:1151:13: warning: 'MX_SPDIFRX_Init' defined but not used [-Wunused-function]
+ 1151 | static void MX_SPDIFRX_Init(void)
+      |             ^~~~~~~~~~~~~~~
+../Core/Src/main.c:1115:13: warning: 'MX_SDMMC2_MMC_Init' defined but not used [-Wunused-function]
+ 1115 | static void MX_SDMMC2_MMC_Init(void)
+      |             ^~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:1081:13: warning: 'MX_SAI2_Init' defined but not used [-Wunused-function]
+ 1081 | static void MX_SAI2_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:1006:13: warning: 'MX_SAI1_Init' defined but not used [-Wunused-function]
+ 1006 | static void MX_SAI1_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:927:13: warning: 'MX_RTC_Init' defined but not used [-Wunused-function]
+  927 | static void MX_RTC_Init(void)
+      |             ^~~~~~~~~~~
+../Core/Src/main.c:892:13: warning: 'MX_QUADSPI_Init' defined but not used [-Wunused-function]
+  892 | static void MX_QUADSPI_Init(void)
+      |             ^~~~~~~~~~~~~~~
+../Core/Src/main.c:830:13: warning: 'MX_LTDC_Init' defined but not used [-Wunused-function]
+  830 | static void MX_LTDC_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:801:13: warning: 'MX_IWDG_Init' defined but not used [-Wunused-function]
+  801 | static void MX_IWDG_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:755:13: warning: 'MX_I2C4_Init' defined but not used [-Wunused-function]
+  755 | static void MX_I2C4_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:709:13: warning: 'MX_I2C1_Init' defined but not used [-Wunused-function]
+  709 | static void MX_I2C1_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:673:13: warning: 'MX_HDMI_CEC_Init' defined but not used [-Wunused-function]
+  673 | static void MX_HDMI_CEC_Init(void)
+      |             ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:629:13: warning: 'MX_ETH_Init' defined but not used [-Wunused-function]
+  629 | static void MX_ETH_Init(void)
+      |             ^~~~~~~~~~~
+arm-none-eabi-gcc -o "ControllerModule.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\PKier\OneDrive\Pulpit\Design Lab\DesignLab-BabaJaga\ControllerModule\ControllerModule\STM32F769NIHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ControllerModule.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ControllerModule.elf
+ 
+arm-none-eabi-objdump -h -S  ControllerModule.elf  > "ControllerModule.list"
+arm-none-eabi-objcopy  -O binary  ControllerModule.elf  "ControllerModule.bin"
+arm-none-eabi-size   ControllerModule.elf 
+   text	   data	    bss	    dec	    hex	filename
+  46092	     24	  40776	  86892	  1536c	ControllerModule.elf
+Finished building: default.size.stdout
+ 
+Finished building: ControllerModule.bin
+ 
+Finished building: ControllerModule.list
+ 
+
+20:04:34 Build Finished. 0 errors, 14 warnings. (took 2s.98ms)
+
