@@ -30,6 +30,8 @@ void end_game()
 	NVIC_DisableIRQ(EXTI1_IRQn);
 	HAL_GPIO_WritePin(PIR1_VCC_GPIO_Port, PIR1_VCC_Pin, 0);
 	HAL_GPIO_WritePin(PIR2_VCC_GPIO_Port, PIR2_VCC_Pin, 0);
+	HAL_GPIO_WritePin(PIR_OUT_2_GPIO_Port, PIR_OUT_2_Pin, 0);
+	HAL_GPIO_WritePin(PIR_OUT_1_GPIO_Port, PIR_OUT_1_Pin, 0);
     player_one.score = 0;
     player_two.score = 0;
 

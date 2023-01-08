@@ -126,8 +126,10 @@ int main(void)
 	  case START:
 		  game_init(player_one_name, player_two_name);
 		  players_movement_allowed = 1;
+		  player_one.score = 0;
+		  player_two.score = 0;
 		  //message = 0x00
-		  message = BABA_JAGA_NIE_PATRZY;
+		  message = BABA_JAGA_PATRZY;
 		  break;
 	  case STOP:
 		  end_game();
@@ -162,21 +164,23 @@ int main(void)
 	  if (players_movement_allowed == 0)
 	  {
 		  HAL_GPIO_WritePin(BABA_JAGA_PATRZY_GPIO_Port, BABA_JAGA_PATRZY_Pin, 0);
-		  if (player_one.score == 1)
+		  if (player_two.score == 1)
 		  {
 			  // Player 1 wins
-			  HAL_GPIO_TogglePin(PIR_OUT_1_GPIO_Port, PIR_OUT_1_Pin);
+			  HAL_GPIO_WritePin(PIR_OUT_1_GPIO_Port, PIR_OUT_1_Pin, 1);
 			  HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, 1);
 			  HAL_Delay(2000);
 			  end_game();
+			  break;
 			 }
-		  else if (player_two.score == 1)
+		  else if (player_one.score == 1)
 		  {
 			  // Player 2 wins
-			  HAL_GPIO_TogglePin(PIR_OUT_2_GPIO_Port, PIR_OUT_2_Pin);
+			  HAL_GPIO_WritePin(PIR_OUT_2_GPIO_Port, PIR_OUT_2_Pin, 1);
 			  HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, 1);
 			  HAL_Delay(2000);
 			  end_game();
+			  break;
 		  }
 	  }
 	  else

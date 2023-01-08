@@ -109,14 +109,12 @@ void MX_GPIO_Init(void)
 /* USER CODE BEGIN 2 */
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-	/* Handling player no 1 movement detected */
-	if (GPIO_Pin == PIR_SIG_1_Pin)
+	if (GPIO_Pin == PIR_SIG_2_Pin)
 	{
 		/* Blink red diode */
 		player_two.score = 1;
 	}
-	/* Handling player no 2 movement detected */
-	else if (GPIO_Pin == PIR_SIG_2_Pin)
+	else if (GPIO_Pin == PIR_SIG_1_Pin)
 	{
 		/* Blink yellow diode */
 		player_one.score = 1;
