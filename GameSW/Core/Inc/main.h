@@ -60,8 +60,6 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define MCO_Pin GPIO_PIN_0
 #define MCO_GPIO_Port GPIOA
-#define PIR1_VCC_Pin GPIO_PIN_1
-#define PIR1_VCC_GPIO_Port GPIOA
 #define VCP_TX_Pin GPIO_PIN_2
 #define VCP_TX_GPIO_Port GPIOA
 #define PIR_OUT_1_Pin GPIO_PIN_3
@@ -78,8 +76,8 @@ void Error_Handler(void);
 #define PIR_SIG_2_Pin GPIO_PIN_1
 #define PIR_SIG_2_GPIO_Port GPIOB
 #define PIR_SIG_2_EXTI_IRQn EXTI1_IRQn
-#define PIR2_VCC_Pin GPIO_PIN_11
-#define PIR2_VCC_GPIO_Port GPIOA
+#define DEBUG_Pin GPIO_PIN_12
+#define DEBUG_GPIO_Port GPIOA
 #define SWDIO_Pin GPIO_PIN_13
 #define SWDIO_GPIO_Port GPIOA
 #define SWCLK_Pin GPIO_PIN_14

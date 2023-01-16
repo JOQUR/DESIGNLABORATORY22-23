@@ -75,7 +75,8 @@ int main(void)
   /* USER CODE BEGIN 1 */
   /* TODO */
   /* Add some mechanism to disable diodes */
-
+    NVIC_DisableIRQ(EXTI0_IRQn);
+	NVIC_DisableIRQ(EXTI1_IRQn);
   char player_one_name[BUFFOR_MAX_SIZE];
   char player_two_name[BUFFOR_MAX_SIZE];
 
@@ -111,8 +112,7 @@ int main(void)
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
   int players_movement_allowed = 1;
-  //HAL_UART_Receive_IT(&huart1, &message, sizeof(message));
-  uint8_t message = START;
+  uint8_t message = '0';
 
   /* USER CODE END 2 */
 
@@ -120,50 +120,41 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
+	  HAL_UART_Receive(&huart1, &message, 1, 150);
 	  switch (message)
 	  {
 	  case START:
 		  game_init(player_one_name, player_two_name);
+		  HAL_GPIO_WritePin(DEBUG_GPIO_Port, DEBUG_Pin, 1);
 		  players_movement_allowed = 1;
 		  player_one.score = 0;
 		  player_two.score = 0;
-		  //message = 0x00
-		  message = BABA_JAGA_PATRZY;
+		  message = BABA_JAGA_NIE_PATRZY;
 		  break;
 	  case STOP:
 		  end_game();
-		  //message = 0x00;
+		  message = 0x00;
 		  break;
 	  case BABA_JAGA_PATRZY:
-		  HAL_GPIO_WritePin(PIR1_VCC_GPIO_Port, PIR1_VCC_Pin, 1);
-		  HAL_GPIO_WritePin(PIR2_VCC_GPIO_Port, PIR2_VCC_Pin, 1);
+		  HAL_GPIO_WritePin(DEBUG_GPIO_Port, DEBUG_Pin, 0);
 		  NVIC_EnableIRQ(EXTI0_IRQn);
 		  NVIC_EnableIRQ(EXTI1_IRQn);
 		  players_movement_allowed = 0;
-		  //message = 0x00;
+		  message = 0x00;
 		  break;
 	  case BABA_JAGA_NIE_PATRZY:
-		  HAL_GPIO_WritePin(PIR1_VCC_GPIO_Port, PIR1_VCC_Pin, 0);
-		  HAL_GPIO_WritePin(PIR2_VCC_GPIO_Port, PIR2_VCC_Pin, 0);
 		  NVIC_DisableIRQ(EXTI0_IRQn);
 		  NVIC_DisableIRQ(EXTI1_IRQn);
 		  players_movement_allowed = 1;
-		  //message = 0x00;
+		  message = 0x00;
 		  break;
 	  default:
-		  //message = 0x00;
+		  message = 0x00;
 		  break;
 	  }
-	  //Static toggle of game
-	  HAL_Delay(3000);
-	  if (message == BABA_JAGA_NIE_PATRZY)
-		  message = BABA_JAGA_PATRZY;
-	  else if(message == BABA_JAGA_PATRZY)
-		  message = BABA_JAGA_NIE_PATRZY;
 	  if (players_movement_allowed == 0)
 	  {
-		  HAL_GPIO_WritePin(BABA_JAGA_PATRZY_GPIO_Port, BABA_JAGA_PATRZY_Pin, 0);
+		  HAL_GPIO_WritePin(BABA_JAGA_PATRZY_GPIO_Port, BABA_JAGA_PATRZY_Pin, 1);
 		  if (player_two.score == 1)
 		  {
 			  // Player 1 wins
@@ -185,7 +176,7 @@ int main(void)
 	  }
 	  else
 	  {
-		  HAL_GPIO_WritePin(BABA_JAGA_PATRZY_GPIO_Port, BABA_JAGA_PATRZY_Pin, 1);
+		  HAL_GPIO_WritePin(BABA_JAGA_PATRZY_GPIO_Port, BABA_JAGA_PATRZY_Pin, 0);
 	  }
     /* USER CODE END WHILE */
 
