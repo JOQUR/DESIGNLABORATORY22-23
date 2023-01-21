@@ -23,7 +23,10 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "player.h"
+#include "debug_settings.h"
+#include "game_if.h"
+#include <string.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -33,6 +36,10 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define START ('A')
+#define STOP ('B')
+#define BABA_JAGA_PATRZY ('C')
+#define BABA_JAGA_NIE_PATRZY ('D')
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -43,6 +50,8 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+extern struct Player player_one;
+extern struct Player player_two;
 
 /* USER CODE END PV */
 
@@ -64,7 +73,8 @@ void SystemClock_Config(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+    NVIC_DisableIRQ(EXTI0_IRQn);
+	NVIC_DisableIRQ(EXTI1_IRQn);
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -85,8 +95,10 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_USART2_UART_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
+  int players_movement_allowed = 1;
+  uint8_t message = '0';
 
   /* USER CODE END 2 */
 
@@ -94,6 +106,62 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  HAL_UART_Receive(&huart1, &message, 1, 150);
+
+	  switch (message)
+	  {
+	  case START:
+		  game_init();
+		  players_movement_allowed = 1;
+		  message = BABA_JAGA_NIE_PATRZY;
+		  break;
+	  case STOP:
+		  end_game();
+		  message = 0x00;
+		  break;
+	  case BABA_JAGA_PATRZY:
+		  NVIC_EnableIRQ(EXTI0_IRQn);
+		  NVIC_EnableIRQ(EXTI1_IRQn);
+		  players_movement_allowed = 0;
+		  message = 0x00;
+		  break;
+	  case BABA_JAGA_NIE_PATRZY:
+		  NVIC_DisableIRQ(EXTI0_IRQn);
+		  NVIC_DisableIRQ(EXTI1_IRQn);
+		  players_movement_allowed = 1;
+		  message = 0x00;
+		  break;
+	  default:
+		  message = 0x00;
+		  break;
+	  }
+	  if (players_movement_allowed == 0)
+	  {
+		  HAL_GPIO_WritePin(BABA_JAGA_PATRZY_GPIO_Port, BABA_JAGA_PATRZY_Pin, 1);
+		  if (player_two.score == 1)
+		  {
+			  // Player 1 wins
+			  HAL_GPIO_WritePin(PIR_OUT_1_GPIO_Port, PIR_OUT_1_Pin, 1);
+			  HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, 1);
+			  HAL_Delay(2000);
+			  players_movement_allowed = 1;
+			  end_game();
+			 }
+		  else if (player_one.score == 1)
+		  {
+			  // Player 2 wins
+			  HAL_GPIO_WritePin(PIR_OUT_2_GPIO_Port, PIR_OUT_2_Pin, 1);
+			  HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, 1);
+			  HAL_Delay(2000);
+			  players_movement_allowed = 1;
+			  end_game();
+
+		  }
+	  }
+	  else
+	  {
+		  HAL_GPIO_WritePin(BABA_JAGA_PATRZY_GPIO_Port, BABA_JAGA_PATRZY_Pin, 0);
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
