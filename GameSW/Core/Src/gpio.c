@@ -54,7 +54,7 @@ void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, PIR_OUT_1_Pin|PIR_OUT_2_Pin|BUZZER_Pin|BABA_JAGA_PATRZY_Pin
-                          |DEBUG_Pin, GPIO_PIN_RESET);
+                          |GAME_ON_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
@@ -70,7 +70,7 @@ void MX_GPIO_Init(void)
   /*Configure GPIO pins : PAPin PAPin PAPin PAPin
                            PAPin */
   GPIO_InitStruct.Pin = PIR_OUT_1_Pin|PIR_OUT_2_Pin|BUZZER_Pin|BABA_JAGA_PATRZY_Pin
-                          |DEBUG_Pin;
+                          |GAME_ON_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

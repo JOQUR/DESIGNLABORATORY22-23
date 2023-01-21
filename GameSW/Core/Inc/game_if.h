@@ -5,7 +5,7 @@
 #include <string.h>
 #include "main.h"
 
-void game_init(char* player_one_name, char* player_two_name);
+void game_init();
 
 void end_game();
 

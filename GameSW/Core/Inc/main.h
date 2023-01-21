@@ -76,8 +76,8 @@ void Error_Handler(void);
 #define PIR_SIG_2_Pin GPIO_PIN_1
 #define PIR_SIG_2_GPIO_Port GPIOB
 #define PIR_SIG_2_EXTI_IRQn EXTI1_IRQn
-#define DEBUG_Pin GPIO_PIN_12
-#define DEBUG_GPIO_Port GPIOA
+#define GAME_ON_Pin GPIO_PIN_12
+#define GAME_ON_GPIO_Port GPIOA
 #define SWDIO_Pin GPIO_PIN_13
 #define SWDIO_GPIO_Port GPIOA
 #define SWCLK_Pin GPIO_PIN_14

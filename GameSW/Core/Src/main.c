@@ -73,22 +73,8 @@ void SystemClock_Config(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-  /* TODO */
-  /* Add some mechanism to disable diodes */
     NVIC_DisableIRQ(EXTI0_IRQn);
 	NVIC_DisableIRQ(EXTI1_IRQn);
-  char player_one_name[BUFFOR_MAX_SIZE];
-  char player_two_name[BUFFOR_MAX_SIZE];
-
-  /* TODO */
-  /* Here we should anchor some mechanism to get configuration from bluetooth */
-
-  /* TODO */
-  /* For now names gonna be static - will see if we wanna send it through bluetooth */
-  char debug_name_1[BUFFOR_MAX_SIZE] = {"Pawel"};
-  char debug_name_2[BUFFOR_MAX_SIZE] = {"Mariusz"};
-  strcpy(player_one_name, debug_name_1);
-  strcpy(player_two_name, debug_name_2);
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -121,14 +107,12 @@ int main(void)
   while (1)
   {
 	  HAL_UART_Receive(&huart1, &message, 1, 150);
+
 	  switch (message)
 	  {
 	  case START:
-		  game_init(player_one_name, player_two_name);
-		  HAL_GPIO_WritePin(DEBUG_GPIO_Port, DEBUG_Pin, 1);
+		  game_init();
 		  players_movement_allowed = 1;
-		  player_one.score = 0;
-		  player_two.score = 0;
 		  message = BABA_JAGA_NIE_PATRZY;
 		  break;
 	  case STOP:
@@ -136,7 +120,6 @@ int main(void)
 		  message = 0x00;
 		  break;
 	  case BABA_JAGA_PATRZY:
-		  HAL_GPIO_WritePin(DEBUG_GPIO_Port, DEBUG_Pin, 0);
 		  NVIC_EnableIRQ(EXTI0_IRQn);
 		  NVIC_EnableIRQ(EXTI1_IRQn);
 		  players_movement_allowed = 0;
@@ -161,8 +144,8 @@ int main(void)
 			  HAL_GPIO_WritePin(PIR_OUT_1_GPIO_Port, PIR_OUT_1_Pin, 1);
 			  HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, 1);
 			  HAL_Delay(2000);
+			  players_movement_allowed = 1;
 			  end_game();
-			  break;
 			 }
 		  else if (player_one.score == 1)
 		  {
@@ -170,8 +153,9 @@ int main(void)
 			  HAL_GPIO_WritePin(PIR_OUT_2_GPIO_Port, PIR_OUT_2_Pin, 1);
 			  HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, 1);
 			  HAL_Delay(2000);
+			  players_movement_allowed = 1;
 			  end_game();
-			  break;
+
 		  }
 	  }
 	  else

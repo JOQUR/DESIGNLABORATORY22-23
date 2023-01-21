@@ -1,3 +1,4 @@
 ../Drivers/CMSIS/Include/core_cm4.h:1717:22:__NVIC_DisableIRQ	16	static,ignoring_inline_asm
-../Core/Src/game_if.c:3:6:game_init	16	static
-../Core/Src/game_if.c:18:6:end_game	8	static
+../Core/Src/game_if.c:3:13:reset_state	8	static
+../Core/Src/game_if.c:20:6:game_init	8	static
+../Core/Src/game_if.c:26:6:end_game	8	static
