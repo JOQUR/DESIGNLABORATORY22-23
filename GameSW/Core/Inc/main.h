@@ -41,7 +41,8 @@ extern "C" {
 
 /* Exported constants --------------------------------------------------------*/
 /* USER CODE BEGIN EC */
-
+extern struct Player player_one;
+extern struct Player player_two;
 /* USER CODE END EC */
 
 /* Exported macro ------------------------------------------------------------*/
@@ -61,11 +62,22 @@ void Error_Handler(void);
 #define MCO_GPIO_Port GPIOA
 #define VCP_TX_Pin GPIO_PIN_2
 #define VCP_TX_GPIO_Port GPIOA
-#define DIODE_Pin GPIO_PIN_4
-#define DIODE_GPIO_Port GPIOA
-#define PIR_SIG_Pin GPIO_PIN_5
-#define PIR_SIG_GPIO_Port GPIOA
-#define PIR_SIG_EXTI_IRQn EXTI9_5_IRQn
+#define PIR_OUT_1_Pin GPIO_PIN_3
+#define PIR_OUT_1_GPIO_Port GPIOA
+#define PIR_OUT_2_Pin GPIO_PIN_4
+#define PIR_OUT_2_GPIO_Port GPIOA
+#define BUZZER_Pin GPIO_PIN_5
+#define BUZZER_GPIO_Port GPIOA
+#define BABA_JAGA_PATRZY_Pin GPIO_PIN_6
+#define BABA_JAGA_PATRZY_GPIO_Port GPIOA
+#define PIR_SIG_1_Pin GPIO_PIN_0
+#define PIR_SIG_1_GPIO_Port GPIOB
+#define PIR_SIG_1_EXTI_IRQn EXTI0_IRQn
+#define PIR_SIG_2_Pin GPIO_PIN_1
+#define PIR_SIG_2_GPIO_Port GPIOB
+#define PIR_SIG_2_EXTI_IRQn EXTI1_IRQn
+#define GAME_ON_Pin GPIO_PIN_12
+#define GAME_ON_GPIO_Port GPIOA
 #define SWDIO_Pin GPIO_PIN_13
 #define SWDIO_GPIO_Port GPIOA
 #define SWCLK_Pin GPIO_PIN_14
@@ -75,7 +87,7 @@ void Error_Handler(void);
 #define LD3_Pin GPIO_PIN_3
 #define LD3_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
-
+#define BUFFOR_MAX_SIZE (128)
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
