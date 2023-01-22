@@ -1,0 +1,18 @@
+*PADS-PCB*
+*PART*
+BUZZ   
+D1     
+D2     
+D3     
+D4     
+H1     
+H2     
+H3     
+H4     
+H5     
+H6     
+R1     R0805
+R2     R0805
+R3     R0805
+R4     R0805
+*END*
