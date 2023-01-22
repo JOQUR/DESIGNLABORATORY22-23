@@ -56,9 +56,6 @@ void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOA, PIR_OUT_1_Pin|PIR_OUT_2_Pin|BUZZER_Pin|BABA_JAGA_PATRZY_Pin
                           |GAME_ON_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
-
   /*Configure GPIO pin : PtPin */
   GPIO_InitStruct.Pin = VCP_TX_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
@@ -76,8 +73,8 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : PBPin PBPin */
-  GPIO_InitStruct.Pin = PIR_SIG_1_Pin|PIR_SIG_2_Pin;
+  /*Configure GPIO pins : PBPin PBPin PBPin PBPin */
+  GPIO_InitStruct.Pin = PIR_SIG_1_Pin|PIR_SIG_2_Pin|BUTTON_1_Pin|BUTTON_2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
@@ -90,19 +87,18 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Alternate = GPIO_AF3_USART2;
   HAL_GPIO_Init(VCP_RX_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : PtPin */
-  GPIO_InitStruct.Pin = LD3_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(LD3_GPIO_Port, &GPIO_InitStruct);
-
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI0_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(EXTI0_IRQn);
 
   HAL_NVIC_SetPriority(EXTI1_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(EXTI1_IRQn);
+
+  HAL_NVIC_SetPriority(EXTI3_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI3_IRQn);
+
+  HAL_NVIC_SetPriority(EXTI4_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI4_IRQn);
 
 }
 
@@ -118,6 +114,14 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	{
 		/* Blink yellow diode */
 		player_one.score = 1;
+	}
+	else if (GPIO_Pin == BUTTON_1_Pin)
+	{
+		player_one.score = 1;
+	}
+	else if (GPIO_Pin == BUTTON_2_Pin)
+	{
+		player_two.score = 1;
 	}
 }
 /* USER CODE END 2 */

@@ -75,6 +75,8 @@ int main(void)
   /* USER CODE BEGIN 1 */
     NVIC_DisableIRQ(EXTI0_IRQn);
 	NVIC_DisableIRQ(EXTI1_IRQn);
+	NVIC_DisableIRQ(EXTI4_IRQn);
+	NVIC_DisableIRQ(EXTI3_IRQn);
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -138,29 +140,29 @@ int main(void)
 	  if (players_movement_allowed == 0)
 	  {
 		  HAL_GPIO_WritePin(BABA_JAGA_PATRZY_GPIO_Port, BABA_JAGA_PATRZY_Pin, 1);
-		  if (player_two.score == 1)
-		  {
-			  // Player 1 wins
-			  HAL_GPIO_WritePin(PIR_OUT_1_GPIO_Port, PIR_OUT_1_Pin, 1);
-			  HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, 1);
-			  HAL_Delay(2000);
-			  players_movement_allowed = 1;
-			  end_game();
-			 }
-		  else if (player_one.score == 1)
-		  {
-			  // Player 2 wins
-			  HAL_GPIO_WritePin(PIR_OUT_2_GPIO_Port, PIR_OUT_2_Pin, 1);
-			  HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, 1);
-			  HAL_Delay(2000);
-			  players_movement_allowed = 1;
-			  end_game();
 
-		  }
 	  }
 	  else
 	  {
 		  HAL_GPIO_WritePin(BABA_JAGA_PATRZY_GPIO_Port, BABA_JAGA_PATRZY_Pin, 0);
+	  }
+	  if (player_two.score == 1)
+	  {
+		  // Player 1 wins
+		  HAL_GPIO_WritePin(PIR_OUT_1_GPIO_Port, PIR_OUT_1_Pin, 1);
+		  HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, 1);
+		  HAL_Delay(2000);
+		  players_movement_allowed = 1;
+		  end_game();
+		 }
+	  else if (player_one.score == 1)
+	  {
+		  // Player 2 wins
+		  HAL_GPIO_WritePin(PIR_OUT_2_GPIO_Port, PIR_OUT_2_Pin, 1);
+		  HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, 1);
+		  HAL_Delay(2000);
+		  players_movement_allowed = 1;
+		  end_game();
 	  }
     /* USER CODE END WHILE */
 
