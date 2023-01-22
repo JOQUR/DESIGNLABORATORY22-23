@@ -1,0 +1,11 @@
+Output: PADS ASCII Netlist
+Type  : PADSNetlist
+From  : Project [DL_Board.PrjPcb]
+   Generated File[DL_Board.NET]
+   Generated File[DL_Board.PRT]
+
+
+Files Generated   : 2
+Documents Printed : 0
+
+Finished Output Generation At 16:18:58 On 22.01.2023
