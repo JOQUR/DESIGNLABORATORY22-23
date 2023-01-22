@@ -1,0 +1,7 @@
+Change Physical Footprint: Designator=Designator8 Old Footprint=DIP32 New Footprint=DIP32
+Change Physical Footprint: Designator=Designator13 Old Footprint=LED_BLUE New Footprint=LED_BLUE
+Change Physical Footprint: Designator=Designator14 Old Footprint=LED_BLUE New Footprint=LED_BLUE
+Change Physical Footprint: Designator=Designator15 Old Footprint=LED_Yellow New Footprint=LED_Yellow
+Change Physical Footprint: Designator=Designator16 Old Footprint=LED_GREEN New Footprint=LED_GREEN
+Change Physical Footprint: Designator=Designator17 Old Footprint=BUZZ New Footprint=BUZZ
+Change Physical Footprint: Designator=Designator20 Old Footprint=Power New Footprint=Power
