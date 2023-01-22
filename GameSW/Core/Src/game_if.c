@@ -20,6 +20,10 @@ static void reset_state()
 void game_init()
 {
 	HAL_GPIO_WritePin(GAME_ON_GPIO_Port, GAME_ON_Pin, 1);
+
+	NVIC_EnableIRQ(EXTI4_IRQn);
+	NVIC_EnableIRQ(EXTI3_IRQn);
+
 	reset_state();
 }
 
@@ -28,6 +32,8 @@ void end_game()
 	/* Disable Interrupts*/
     NVIC_DisableIRQ(EXTI0_IRQn);
 	NVIC_DisableIRQ(EXTI1_IRQn);
+	NVIC_DisableIRQ(EXTI4_IRQn);
+	NVIC_DisableIRQ(EXTI3_IRQn);
 
 	reset_state();
 

@@ -76,9 +76,6 @@ void Error_Handler(void);
 #define PIR_SIG_2_Pin GPIO_PIN_1
 #define PIR_SIG_2_GPIO_Port GPIOB
 #define PIR_SIG_2_EXTI_IRQn EXTI1_IRQn
-#define BUTTON_Pin GPIO_PIN_8
-#define BUTTON_GPIO_Port GPIOA
-#define BUTTON_EXTI_IRQn EXTI9_5_IRQn
 #define GAME_ON_Pin GPIO_PIN_12
 #define GAME_ON_GPIO_Port GPIOA
 #define SWDIO_Pin GPIO_PIN_13
@@ -87,8 +84,12 @@ void Error_Handler(void);
 #define SWCLK_GPIO_Port GPIOA
 #define VCP_RX_Pin GPIO_PIN_15
 #define VCP_RX_GPIO_Port GPIOA
-#define LD3_Pin GPIO_PIN_3
-#define LD3_GPIO_Port GPIOB
+#define BUTTON_1_Pin GPIO_PIN_3
+#define BUTTON_1_GPIO_Port GPIOB
+#define BUTTON_1_EXTI_IRQn EXTI3_IRQn
+#define BUTTON_2_Pin GPIO_PIN_4
+#define BUTTON_2_GPIO_Port GPIOB
+#define BUTTON_2_EXTI_IRQn EXTI4_IRQn
 /* USER CODE BEGIN Private defines */
 #define BUFFOR_MAX_SIZE (128)
 /* USER CODE END Private defines */
